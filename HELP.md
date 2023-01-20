@@ -6,6 +6,8 @@ Spring и Java.
 Текущая ветка 
 future/02-add-common-data
 
+future/03-change-first-service
+
 ## Содержание
 1. [In progress](https:) - сервис с общими данными
 2. [email-rest-service](https://github.com/alexmnv03/java-core/tree/src/main/java) - приложение 
