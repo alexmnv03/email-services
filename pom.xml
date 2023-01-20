@@ -10,6 +10,7 @@
 	<packaging>pom</packaging>
 
     <modules>
+      <module>common-data</module>
       <module>email-rest-service</module>
 
     </modules>
