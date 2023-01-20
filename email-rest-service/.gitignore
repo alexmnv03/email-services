@@ -1,5 +1,5 @@
 HELP.md
-email.yaml
+/src/main/resources/email.yaml
 target/
 .mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
