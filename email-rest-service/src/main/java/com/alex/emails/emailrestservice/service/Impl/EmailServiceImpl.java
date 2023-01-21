@@ -2,20 +2,16 @@ package com.alex.emails.emailrestservice.service.Impl;
 
 import com.alex.emails.emailrestservice.config.EmailServerConfig;
 import com.alex.emails.emailrestservice.service.EmailService;
+import com.example.commondata.data.EmailConstants;
 import com.example.commondata.dto.EmailDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.mail.MailMessage;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMailMessage;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
-import ru.octory.marketplace.common.data.AuthConstants;
 
 import javax.mail.internet.MimeMessage;
-import java.nio.charset.Charset;
 
 @Service
 @Slf4j
@@ -23,9 +19,7 @@ public class EmailServiceImpl implements EmailService {
 
     private String username;
 
-    private static final String FROM_EMAIL = "lysanaymlv@mail.ru";
-//    private static final String FROM_EMAIL = "alexmnv02@gmail.com";
-//    private static final String FROM_EMAIL = "tech_support@octory.ru";
+    private static final String FROM_EMAIL = "test@mail.ru";
 
     // LATEST: Заижестить через конструктор обычном способом - и проверить
     @Autowired
@@ -118,7 +112,7 @@ public class EmailServiceImpl implements EmailService {
         email.setTo(emailDto.getTo());
         email.setSubject(emailDto.getSubject());
         email.setBody(String.format(
-                AuthConstants.EMAIL_TEXT,
+                EmailConstants.EMAIL_TEXT,
                 emailDto.getFullName(),
                 emailDto.getCode()));
         return email;
