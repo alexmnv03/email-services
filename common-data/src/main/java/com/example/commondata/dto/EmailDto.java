@@ -12,9 +12,14 @@ import java.io.Serializable;
 public class EmailDto implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    // адрес получателя
     private String to;
+    // тема письма
     private String subject;
+    // Текс сообщения
     private String body;
+    // полное имя пользователя
     private String fullName;
+    // код авторизации
     private Integer code;
 }
