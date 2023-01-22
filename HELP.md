@@ -10,8 +10,8 @@ future/03-change-first-service
 
 ## Содержание
 1. [common-data](https://github.com/alexmnv03/email-services/tree/develop/common-data) - сервис с общими данными
-2. [email-rest-service](https://github.com/alexmnv03/java-core/tree/src/main/java) - приложение 
-   получает запросы на отправку почтовых сообщений по REST API  
+2. [email-rest-service](https://github.com/alexmnv03/email-services/tree/develop/email-rest-service) - приложение 
+   получает HTTP запросы на отправку почтовых сообщений по REST API  
 3. [In progress](https) - progress
 4. [In progress](https) - progress
 5. [In progress](https) - progress

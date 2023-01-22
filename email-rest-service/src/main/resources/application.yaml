@@ -2,13 +2,15 @@ server:
   port: 9501
   servlet.context-path: /email-rest-service/api-v1
 
-#mail-ru
+#gmail
 spring:
   mail:
-    host: smtp.mail.ru
+    host: smtp.gmail.com
     port: 465
-    username: email_service@email.ru
+    username: alexmnv02@gmail.com
     password: 1234567
+#    username: email_service@email.ru
+#    password: 1234567
     properties:
       mail:
         smtp:

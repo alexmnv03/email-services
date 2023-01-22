@@ -13,13 +13,13 @@ import org.springframework.stereotype.Service;
 
 import javax.mail.internet.MimeMessage;
 
+import static com.example.commondata.data.EmailConstants.FIX_FROM_EMAIL;
+
 @Service
 @Slf4j
 public class EmailServiceImpl implements EmailService {
 
     private String username;
-
-    private static final String FROM_EMAIL = "test@mail.ru";
 
     // LATEST: Заижестить через конструктор обычном способом - и проверить
     @Autowired
@@ -29,7 +29,6 @@ public class EmailServiceImpl implements EmailService {
         this.javaMailSender = javaMailSender;
         this.username = serverConfig.getUsername();
     }
-
 
     /**
      * Тестовая отправка письма на фиксированный email
@@ -41,39 +40,28 @@ public class EmailServiceImpl implements EmailService {
         log.info("sendFixMail");
 
         // Простой вариант отправки писем
-
         SimpleMailMessage mailMessage = new SimpleMailMessage();
 
         mailMessage.setTo(toEmail);
         mailMessage.setSubject(subject);
         mailMessage.setText(message);
 
-        mailMessage.setFrom(FROM_EMAIL);
+        mailMessage.setFrom(FIX_FROM_EMAIL);
 
         log.info("отправляем ");
         javaMailSender.send(mailMessage);
         log.info("отправлено");
-
-
-//        SmtpClient client =
-//                new SmtpClient("smtp.mail.ru", Convert.ToInt32(0x19)) // сервер,порт
-//                {
-//                    Credentials = new NetworkCredential("Ваш Email", "Ваш пароль"),
-//                    EnableSsl = true // обязательно!
-//                };
-
     }
 
     /**
      * Отправка письма email клиента
      * @param emailDto data
      */
-//    public boolean sendMail(String toEmail, String subject, String fullName, Integer code) {
     public boolean sendMail(EmailDto emailDto) {
         log.info("EmailServiceImpl ---> sendMail");
         log.info("EmailServiceImpl ---> username = {0}:{}" , username);
         try {
-//            SimpleMailMessage mailMessage = new SimpleMailMessage();
+            // SimpleMailMessage mailMessage = new SimpleMailMessage();
 
             EmailDto emailBodyDto = addBodyForEmailDto(emailDto);
 

@@ -26,12 +26,11 @@ public class EmailController {
      */
     @PostMapping(value = "/send-fix-mail")
     public ResponseEntity<?> sendFixMail(@RequestBody EmailDto emailDto) {
-        log.info("EmailController -- send-fix-mail -- start");
-        // man_angelina@mail.ru
-        emailService.sendFixMail("man_angelina@mail.ru",
-                "Test Subject", "Test mail");
+        log.info("sendFixMail {}", emailDto);
+        emailService.sendFixMail(emailDto.getTo(),
+                emailDto.getSubject(), emailDto.getBody());
         log.info("Ушло");
-        return new ResponseEntity<>("Коллекция interview пустая", HttpStatus.OK);
+        return new ResponseEntity<>("Сообщение отправлено", HttpStatus.OK);
     }
 
     /**
@@ -40,7 +39,7 @@ public class EmailController {
      */
     @PostMapping(value = "/sendmail")
     public ResponseEntity<Object> sendMail(@RequestBody EmailDto emailDto) {
-        log.info("EmailController -- sendmail -- {}", emailDto);
+        log.info("sendmail -- {}", emailDto);
         if (emailDto != null) {
             if (emailDto.getFullName() == null) {
                 return new ResponseEntity<>("Не заполнено поле с именем",
@@ -58,17 +57,18 @@ public class EmailController {
                 return new ResponseEntity<>("Нет кода подтвержения",
                         HttpStatus.NOT_ACCEPTABLE);
             }
-            log.info("Data OK");
+            log.info("Data is checked");
 
             if (emailService.sendMail(emailDto)) {
-                return new ResponseEntity<>("Сообщение отправлено", HttpStatus.OK);
+                return new ResponseEntity<>("Сообщение отправлено пользователю "
+                        + emailDto.getFullName() + " по адресу " + emailDto.getTo()
+                        , HttpStatus.OK);
             } else {
                 return new ResponseEntity<>("Сообщение неотправлено",
                         HttpStatus.REQUEST_TIMEOUT);
             }
         } else {
             return new ResponseEntity<>("Объект EmailDto пустой", HttpStatus.NOT_ACCEPTABLE);
-
         }
 
     }
