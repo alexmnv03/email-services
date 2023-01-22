@@ -6,6 +6,8 @@ import com.example.commondata.data.EmailConstants;
 import com.example.commondata.dto.EmailDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -57,16 +59,19 @@ public class EmailServiceImpl implements EmailService {
      * Отправка письма email клиента
      * @param emailDto data
      */
-    public boolean sendMail(EmailDto emailDto) {
-        log.info("EmailServiceImpl ---> sendMail");
+    public ResponseEntity<Object> sendMail(EmailDto emailDto) {
+        log.info("sendMail {}", emailDto);
         log.info("EmailServiceImpl ---> username = {0}:{}" , username);
+        ResponseEntity<Object> response = verificationEmailData(emailDto);
+        if (response.getStatusCode() != HttpStatus.OK) {
+            return response;
+        }
+        log.info("Data is checked");
         try {
             // SimpleMailMessage mailMessage = new SimpleMailMessage();
 
             EmailDto emailBodyDto = addBodyForEmailDto(emailDto);
-
             final MimeMessage mailMessage = javaMailSender.createMimeMessage();
-
             final MimeMessageHelper messageHelper = new MimeMessageHelper(mailMessage,
                     true,"utf8");
 
@@ -79,11 +84,14 @@ public class EmailServiceImpl implements EmailService {
             mailMessage.setContent(emailBodyDto.getBody(), "text/html; charset=utf-8");
             javaMailSender.send(mailMessage);
             log.info("EmailServiceImpl ---> sendMail письмо отправлено клиенту");
-            return true;
+
+            return new ResponseEntity<>("Сообщение отправлено пользователю "
+                    + emailDto.getFullName() + " по адресу " + emailDto.getTo()
+                    , HttpStatus.OK);
 
         } catch (Exception e) {
-            log.error("EmailServiceImpl ---> sendMail {0}: {}", e.getMessage());
-            return false;
+            return new ResponseEntity<>("Ошибка отправки сообщения " + e.getMessage(),
+                    HttpStatus.REQUEST_TIMEOUT);
         }
         // LATER: Пробросить наверх исключение SocketTimeoutException, чтобы отличать их
         // LATER: Пробросить наверх исключение catch (MailSendException exc) {
@@ -104,6 +112,30 @@ public class EmailServiceImpl implements EmailService {
                 emailDto.getFullName(),
                 emailDto.getCode()));
         return email;
+    }
+
+    private ResponseEntity<Object> verificationEmailData(EmailDto emailDto) {
+        if (emailDto != null) {
+            if (emailDto.getFullName() == null) {
+                return new ResponseEntity<>("Не заполнено поле с именем",
+                        HttpStatus.NOT_ACCEPTABLE);
+            }
+            if (emailDto.getTo() == null) {
+                return new ResponseEntity<>("Не заполнено поле email",
+                        HttpStatus.NOT_ACCEPTABLE);
+            }
+            if (emailDto.getSubject() == null) {
+                return new ResponseEntity<>("Не заполнено поле темы",
+                        HttpStatus.NOT_ACCEPTABLE);
+            }
+            if ((emailDto.getCode() == null) || (emailDto.getCode() == 0)) {
+                return new ResponseEntity<>("Нет кода подтвержения",
+                        HttpStatus.NOT_ACCEPTABLE);
+            }
+        } else {
+            return new ResponseEntity<>("Объект EmailDto пустой", HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>("Объект проверен", HttpStatus.OK);
     }
 
 }
