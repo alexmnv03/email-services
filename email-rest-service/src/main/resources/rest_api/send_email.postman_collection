@@ -1,0 +1,77 @@
+{
+	"info": {
+		"_postman_id": "b80a0094-05ec-4db6-a3f8-6d415a1c66ee",
+		"name": "Utilietes",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Send fix email",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"to\": \"alex@gmail.com\",\r\n  \"subject\": \"test message\",\r\n  \"body\": \"You received this email because an account with this email address was created in the 'Name company' service.\",\r\n  \"fullName\": \"Alexandr\",\r\n  \"code\": \"12345\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9501/email-rest-service/api-v1/email/send-fix-mail",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9501",
+					"path": [
+						"email-rest-service",
+						"api-v1",
+						"email",
+						"send-fix-mail"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Send emails",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"to\": \"alex@gmail.com\",\r\n  \"subject\": \"test message\",\r\n  \"body\": \"You received this email because an account with this email address was created in the 'Name company' service.\",\r\n  \"fullName\": \"Alexandr\",\r\n  \"code\": \"12345\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9501/email-rest-service/api-v1/email/sendmail",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9501",
+					"path": [
+						"email-rest-service",
+						"api-v1",
+						"email",
+						"sendmail"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

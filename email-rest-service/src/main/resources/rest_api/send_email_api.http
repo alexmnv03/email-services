@@ -1,0 +1,9 @@
+POST http://localhost:9501/email-rest-service/api-v1/email/sendmail
+Content-type: application/json; charset=utf-8
+{
+  "to": "alex@gmail.com",
+  "subject": "test message",
+  "body": "You received this email because an account with this email address was created in the 'Name company' service.",
+  "fullName": "Alexandr",
+  "code": "12345"
+}
