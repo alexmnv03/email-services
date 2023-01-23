@@ -1,7 +1,8 @@
 #HELP.md
 uploads/
 uploads_f/
-!.mvn/wrapper/maven-wrapper.jar
+.mvn/wrapper/maven-wrapper.jar
+.mvn/wrapper/
 #!**/src/main/**/target/
 #!**/src/test/**/target/
 
