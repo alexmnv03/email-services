@@ -6,13 +6,14 @@ Spring и Java.
 Текущая ветка 
 future/02-add-common-data
 
-future/03-change-first-service
+future/04-create-thread-email-service
 
 ## Содержание
 1. [common-data](https://github.com/alexmnv03/email-services/tree/develop/common-data) - сервис с общими данными
 2. [email-rest-service](https://github.com/alexmnv03/email-services/tree/develop/email-rest-service) - приложение 
-   получает HTTP запросы на отправку почтовых сообщений по REST API  
-3. [In progress](https) - progress
+   получает HTTP запросы (REST API) на отправку почтовых сообщений  
+3. [email-thread-service](https) - это многопоточное приложение обработки и отправки 
+   полученных писем
 4. [In progress](https) - progress
 5. [In progress](https) - progress
-6. [In progress](https) - progress
+6. [In progress](https) - kafka
