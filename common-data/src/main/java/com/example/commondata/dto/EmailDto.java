@@ -22,4 +22,5 @@ public class EmailDto implements Serializable {
     private String fullName;
     // код авторизации
     private Integer code;
+
 }
