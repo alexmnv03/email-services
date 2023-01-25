@@ -7,6 +7,7 @@ Spring и Java.
 future/02-add-common-data
 
 future/05-create-receive-emails-service
+future/06-move-data-in-common
 
 ## Содержание
 1. [common-data](https://github.com/alexmnv03/email-services/tree/develop/common-data) - сервис с общими данными
