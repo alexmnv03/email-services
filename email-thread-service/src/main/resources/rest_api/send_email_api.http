@@ -1,0 +1,2 @@
+POST http://localhost:9502/email-tread-service/api-v1/email/stop
+Content-type: application/json; charset=utf-8

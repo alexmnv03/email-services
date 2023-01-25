@@ -1,6 +1,6 @@
 server:
   port: 9502
-  servlet.context-path: /email-rest-service/api-v1
+  servlet.context-path: /email-tread-service/api-v1
 
 #gmail
 spring:
