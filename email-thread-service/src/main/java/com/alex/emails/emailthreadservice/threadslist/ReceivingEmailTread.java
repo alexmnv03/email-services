@@ -7,19 +7,10 @@ import lombok.extern.slf4j.Slf4j;
 import java.util.Random;
 import java.util.concurrent.BlockingQueue;
 
-import static com.example.commondata.data.EmailConstants.EMAIL_SUBJECT;
+import static com.example.commondata.data.EmailConstants.*;
 
 @Slf4j
 public class ReceivingEmailTread extends Thread {
-
-    // TODO: Переенсти в пакет с данными EmailConstants
-    private static final Integer WRITE_TIME_OUT = 30000;
-    private static final Integer READ_TIME_OUT = 40000;
-    private static final Integer COUNT_NAMES = 40;
-    private static final Integer COUNT_EMAILS = 6;
-    private static final Integer CODE_MAX_VALUE = 99999;
-    private static final String BODY_MESSAGE = "You received this email because an account with " +
-            "this email address was created in the 'Name company' service.";
 
     // TODO: Переенсти в пакет с данными EmailVariable
     private String[] nameList = {
