@@ -14,4 +14,6 @@ public class EmailConstants {
     public static final String BODY_MESSAGE = "You received this email because an account with " +
             "this email address was created in the 'Name company' service.";
 
+    public static final Integer CAPACITY_QUEUE = 10;
+
 }
