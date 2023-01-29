@@ -11,6 +11,10 @@ import static com.example.commondata.data.EmailConstants.*;
 import static com.example.commondata.data.EmailVariable.emailList;
 import static com.example.commondata.data.EmailVariable.nameList;
 
+
+/**
+ * Поток для сервиса имитации отправки писем из стороннего источника
+ */
 @Slf4j
 public class ReceivingEmailTread extends Thread {
 
@@ -26,7 +30,7 @@ public class ReceivingEmailTread extends Thread {
         EmailDto emailDto;
 
         while(commonTreadData.getIsStart().get()) {
-            log.info("ReceivingEmailTread->while");
+            log.debug("ReceivingEmailTread->new while");
             try {
                 emailDto = createEmailDto();
                 emailQueue.add(emailDto);

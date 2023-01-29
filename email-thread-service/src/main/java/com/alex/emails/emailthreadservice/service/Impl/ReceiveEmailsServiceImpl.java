@@ -31,4 +31,5 @@ public class ReceiveEmailsServiceImpl implements ReceiveEmailsService {
         commonTreadData.setIsStart(new AtomicBoolean((true)));
         new ReceivingEmailTread(commonTreadData).start();
     }
+
 }
