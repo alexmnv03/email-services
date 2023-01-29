@@ -7,11 +7,11 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import static com.example.commondata.data.EmailConstants.CAPACITY_QUEUE;
+
 @Component
 public class CommonTreadData {
 
-    // TODO: Переенсти в пакет с данными EmailConstants
-    private static final Integer CAPACITY_QUEUE = 10;
     private AtomicBoolean isStart;
 
     private BlockingQueue<EmailDto> emailQueue;
