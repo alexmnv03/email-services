@@ -2,6 +2,7 @@ package com.alex.emails.emailthreadservice.service.Impl;
 
 import com.alex.emails.emailthreadservice.data.CommonTreadData;
 import com.alex.emails.emailthreadservice.service.ProcessingEmailsService;
+import com.alex.emails.emailthreadservice.threadslist.ProcessingEmailTread;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -26,9 +27,7 @@ public class ProcessingEmailsServiceImpl implements ProcessingEmailsService {
      */
     public void LaunchProcessingEmailService() {
         log.info("start LaunchProcessingEmailService ->>");
-
-//        commonTreadData.setIsStart(new AtomicBoolean((true)));
-//        new ReceivingEmailTread(commonTreadData).start();
+        new ProcessingEmailTread(commonTreadData).start();
     }
 
 }

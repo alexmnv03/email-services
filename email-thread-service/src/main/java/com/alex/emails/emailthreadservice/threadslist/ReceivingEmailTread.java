@@ -33,7 +33,12 @@ public class ReceivingEmailTread extends Thread {
             log.debug("ReceivingEmailTread->new while");
             try {
                 emailDto = createEmailDto();
-                emailQueue.add(emailDto);
+                // TODO проверить как работает put, при необходимости заменить на offer с
+                //  ожиданием, чтобы не блокировать на долго поток
+                // используем put вместо add, т.к. он будет ждать когда в очереди появится
+                // свободное место, если очередь заполнена, в отличии от add которое в этом
+                // случае выбросит исключение
+                emailQueue.put(emailDto);
                 Thread.sleep(WRITE_TIME_OUT);
             } catch (InterruptedException e) {
                 e.printStackTrace();

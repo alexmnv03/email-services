@@ -17,7 +17,6 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class ReceiveEmailsServiceImpl implements ReceiveEmailsService {
 
     private CommonTreadData commonTreadData;
-    private ReceivingEmailTread receivingEmailTread;
 
     public ReceiveEmailsServiceImpl(CommonTreadData commonTreadData) {
         this.commonTreadData = commonTreadData;
