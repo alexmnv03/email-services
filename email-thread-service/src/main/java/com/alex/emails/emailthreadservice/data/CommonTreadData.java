@@ -18,6 +18,7 @@ public class CommonTreadData {
 
     public CommonTreadData() {
         this.emailQueue = new ArrayBlockingQueue<>(CAPACITY_QUEUE, true);;
+        isStart = new AtomicBoolean(false);
     }
 
     public BlockingQueue<EmailDto> getEmailQueue() {
@@ -28,12 +29,12 @@ public class CommonTreadData {
         this.emailQueue = emailQueue;
     }
 
-    public AtomicBoolean getIsStart() {
-        return isStart;
+    public boolean getIsStart() {
+        return isStart.get();
     }
 
-    public void setIsStart(AtomicBoolean isStart) {
-        this.isStart = isStart;
+    public void setIsStart(boolean isStart) {
+        this.isStart.set(isStart);
     }
 
     public void addToEmailQueue(EmailDto emailDto) {

@@ -27,7 +27,7 @@ public class EmailController {
     @PostMapping(value = "/stop")
     public void stopReceivingEmails() {
         log.info("stopReceivingEmails->start ");
-        commonTreadData.setIsStart(new AtomicBoolean((false)));
+        commonTreadData.setIsStart(false);
     }
 
 }

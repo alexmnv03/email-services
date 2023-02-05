@@ -47,6 +47,10 @@ public class EmailVariable {
 
     public static final String[] emailList = {
             "alex@gmail.com",
+            "alex@gmail.com",
+            "alex@gmail.com",
+            "alex@gmail.com",
+            "alex@gmail.com",
             "lysan@gmail.com"
     };
 
