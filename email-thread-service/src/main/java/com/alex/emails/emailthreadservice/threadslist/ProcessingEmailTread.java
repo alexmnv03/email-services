@@ -16,7 +16,7 @@ import static com.example.commondata.data.EmailConstants.WRITE_TIME_OUT;
 @Slf4j
 public class ProcessingEmailTread extends Thread {
 
-    private CommonTreadData commonTreadData;
+    private final CommonTreadData commonTreadData;
 
     public ProcessingEmailTread(CommonTreadData commonTreadData) {
         this.commonTreadData = commonTreadData;
@@ -24,17 +24,17 @@ public class ProcessingEmailTread extends Thread {
 
     public void run() {
         log.info("ProcessingEmailTread->start");
-        BlockingQueue<EmailDto> emailQueue = commonTreadData.getEmailQueue();
-        while(commonTreadData.getIsStart().get()) {
+        log.info("commonTreadData. IsStart= {}", commonTreadData.getIsStart());
+        while(commonTreadData.getIsStart()) {
             log.debug("ProcessingEmailTread->new while");
-            // TODO проверить как работает take, при необходимости заменить на offer с ожиданием,
-            //  чтобы не блокировать на долго поток
+            log.info("ProcessingEmailTread->new while");
             // используем take вместо remove, т.к. он будет ждать когда в очереди появится
             // новый элемент, если очередь пустая, в отличии от remove которое в этом
             // случае выбросит исключение и для remove нужно выполнить сначала чтение, т.к. он
             // просто удаляет элемент
+            // Получается что сервис зависает на всегда, пока не появится объект в очереди
             try {
-                EmailDto emailDto = emailQueue.take();
+                EmailDto emailDto = commonTreadData.getFromEmailQueue();
                 // Запускаем поток отправки ответного сообщения
 
                 // TODO добавить код после добавления нового сервиса

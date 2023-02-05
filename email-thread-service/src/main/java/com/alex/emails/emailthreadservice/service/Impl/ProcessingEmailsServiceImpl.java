@@ -27,6 +27,7 @@ public class ProcessingEmailsServiceImpl implements ProcessingEmailsService {
      */
     public void LaunchProcessingEmailService() {
         log.info("start LaunchProcessingEmailService ->>");
+        log.info("commonTreadData IsStart() {}", commonTreadData.getIsStart());
         new ProcessingEmailTread(commonTreadData).start();
     }
 

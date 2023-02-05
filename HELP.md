@@ -5,9 +5,10 @@ Spring и Java.
 
 Текущая ветка 
 
-future/05-create-receive-emails-service
 future/06-move-data-in-common
 future/07-create-processing-emails-service
+future/08-create-send-emails-service
+
 
 ## Содержание
 1. [common-data](https://github.com/alexmnv03/email-services/tree/develop/common-data) - сервис с общими данными

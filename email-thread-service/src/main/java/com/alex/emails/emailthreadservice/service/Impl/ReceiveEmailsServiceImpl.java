@@ -6,8 +6,6 @@ import com.alex.emails.emailthreadservice.threadslist.ReceivingEmailTread;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.concurrent.atomic.AtomicBoolean;
-
 /**
  * Сервис в отдельном потоке имитирует сторонний источник отправки писем нашему приложению а так же
  * складывает их в очередь
@@ -27,7 +25,8 @@ public class ReceiveEmailsServiceImpl implements ReceiveEmailsService {
      */
     public void LaunchReceivingEmailService() {
         log.info("start LaunchReceivingEmailService ->>");
-        commonTreadData.setIsStart(new AtomicBoolean((true)));
+        commonTreadData.setIsStart(true);
+        log.info("commonTreadData. IsStart {}", commonTreadData.getIsStart());
         new ReceivingEmailTread(commonTreadData).start();
     }
 
